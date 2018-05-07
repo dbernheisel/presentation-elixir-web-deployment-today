@@ -1,0 +1,16 @@
+{
+  "name": "deployment-today",
+  "version": "1.0.0",
+  "main": "presentation.md",
+  "scripts": {
+    "watch": "reveal-md -w",
+    "serve": "reveal-md",
+    "debug": "DEBUG=reveal-md reveal-md -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "reveal-md": "^2.0.4"
+  }
+}
