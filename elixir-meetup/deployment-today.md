@@ -87,6 +87,10 @@ have been released.
 
 <!--s-->
 
+![Ask Twitter](./images/deployment_today/ask-twitter.png)
+
+<!--s-->
+
 # WHEN
 
 <!--s-->
