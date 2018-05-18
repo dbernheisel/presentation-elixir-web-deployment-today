@@ -300,6 +300,10 @@ Note: All the responsibility is yours
 
 <!--s-->
 
+<!-- .slide: style="margin-top: 25%" data-background="./images/deployment_today/maximum-effort.png" -->
+
+<!--s-->
+
 ## Nuts and bolts
 
 - Setup project with Distillery.
