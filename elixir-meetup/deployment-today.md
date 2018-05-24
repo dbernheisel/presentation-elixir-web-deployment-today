@@ -347,11 +347,11 @@ Note: With great power comes great responsibility
 
 <!--s-->
 
-<!-- .slide: style="margin-top: 25%" data-background="./images/deployment_today/maximum-effort.png" -->
+<!-- .slide: style="margin-top: 25%" data-background-size="contain" data-background="./images/deployment_today/maximum-effort.png" -->
 
 <!--s-->
 
-<!-- .slide: style="margin-top: 25%" data-background="./images/deployment_today/great-responsibility.jpg" -->
+<!-- .slide: style="margin-top: 25%" data-background-size="contain" data-background="./images/deployment_today/great-responsibility.jpg" -->
 
 <!--s-->
 
@@ -429,7 +429,7 @@ export PORT=4000
 
 <!--s-->
 
-Distillery can dynamically replace strings like:
+Distillery can replace strings on startup like:
 ```elixir
 "${DB_USER}"
 ```
@@ -450,7 +450,7 @@ $ REPLACE_OS_VARS=true ./bin/your_app
 NO MORE OF THIS
 
 ```elixir
-{:system, "DB_USER"}
+{:system, "PORT"}
 ```
 
 <!--s-->
@@ -886,6 +886,11 @@ EOF
 - CDN Strategy
 - Kubernetes for scaling
 - You know... all the stuff that SaaS does
+-
+<!--s-->
+
+<!-- .slide: style="margin-top: 25%" data-background-size="contain" data-background="./images/deployment_today/let-the-devops-flow.jpg" -->
+
 
 <!--s-->
 
