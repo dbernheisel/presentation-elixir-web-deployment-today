@@ -359,6 +359,8 @@ Note: With great power comes great responsibility
 
 - `mix run --no-halt` lazy loads modules
 - Gives you a node for clustering
+- `run_erl` (helps to manage the standard I/O of a program)
+- `heart` (restart when crash, when pid terminates. Disabled by default)
 
 
 Note: With great power comes great responsibility. All the
