@@ -110,7 +110,6 @@ of process.
 * Totality
 * Monads
 * Happy path
-* Recursion
 
 ---
 
@@ -145,30 +144,42 @@ Data moving through transformations
 
 ---
 
+### Pipelines
+
+```elixir
+def load(filename)
+  filename
+  |> read()
+  |> parse()
+  |> validate()
+end
+```
+
+^ It's a system of functions working together, and we stitch these
+functions together to make longer pipes of data, and these pipes
+constructed into other pipes, and so on
+
+---
+
 ### Totality
 
 ```elixir
-@spec load(String.t) :: [Employee.t]
-def load(filename), do: [%Employee{id: 1}, ...]
+@spec load(String.t) :: [Row.t]
+def load(filename), do: [%Row{id: 1}, ...]
 ```
 
 ```elixir
-@spec load(String.t) :: [Employee.t]
-def load(filename) do
+@spec read(String.t) :: Enumerable.t
+def read(filename) do
   case filename do
     nil ->
       raise FileError, "Filename not supplied"
     filename ->
-      load_the_employees_from_file(filename)
-    end
+      filename |> read_file!
   end
 end
 ```
 
-
-^ Defining types in Elixir is optional, but when you have it, it serves
-as documentation to other developers, and it indicates what kind of
-input and output you should expect.
 
 ^ The first function is simple, and total.
 
@@ -177,31 +188,107 @@ exception. Please don't do this, it's awful and performance-wise is
 never better. As a developer, I don't need you to decide for me to raise
 an exception in my application, I need you to be a monad.
 
+^ Defining types in Elixir is optional, but when you have it, it serves
+as documentation to other developers, and it indicates what kind of
+input and output you should expect.
+
+^ There is tooling available to check if you're honoring your typespecs
+at compile-time
+
 ---
 
 ### Monad
 
 ```elixir
-@spec load(String.t) :: {:ok | :error, [Employee.t]}
-def load(filename) do
+@spec read(String.t) :: {:ok | :error, Enumerable.t}
+def read(filename) do
   case filename do
     nil ->
       {:error, 'Filename not supplied'}
     filename ->
-      {:ok, load_the_employees_from_file(filename)}
+      {:ok, read_file!(filename)}
     end
   end
 end
 ```
 
-^ This is a monad. All it's doing is giving you metadata about the
-function's result. In this case, I'm returning a tuple that allows me to
-switch upon it in the pipeline.
+^ This first function is a monad. All it's doing is giving you metadata
+about the function's result. In this case, I'm returning a tuple that
+allows me to switch upon it in the pipeline. The first element in the
+tuple is either an :ok atom, or an :error atom.
 
 ---
 
 Show railway images with branches
 
+---
+
+### Happy Path
+
+```elixir
+@spec parse({:ok | :error, Enumerable.t}) :: {:ok | :error, Enumerable.t}
+def parse({:ok, raw_rows}) do   # Happy Path :)
+  parsed_rows =
+    Enum.map(raw_rows, fn raw_row ->
+      %Row{
+        name: raw_row[0],
+        email: raw_row[1],
+      }
+    end
+  {:ok, parsed_rows}
+end
+def parse(errors), do: errors   # Unhappy Path :(
+```
+
+^ It's easy to program for the happy path when the language includes
+pattern-matching. With pattern-matching, I can easily identify what I
+need from the input so I can transform the data and return it as the
+output.
+
+^ It's also easy to recognize that I have limited my happy path in the
+clause, and it's equally as easy to include an unhappy path clause right
+after it. In this case, _only_ in the case of an {:ok} tuple will it
+proceed to transform; otherwise, the other clause will match and simply
+pass on the data as-is with no transformation.
+
+^ Programming for the unhappy path is more difficult in other languages
+without pattern-matching. It's more difficult because it's easier to
+forget about Nil
+
+---
+
+# [fit] Nil
+# [fit] NoMethodError
+
+---
+
+### Composition
+
+```elixir
+@spec read(String.t) :: {:ok | :error, Enumerable.t}
+def read(filename) do
+  case filename do
+    nil ->
+      {:error, 'Filename not supplied'}
+    filename ->
+      {:ok, read_file!(filename)}
+    end
+  end
+end
+```
+
+---
+
+### Composition
+
+```elixir
+@spec read_file!(String.t) :: Enumerable.t
+def read_file!(filename) do
+  filename
+  |> File.stream!
+  |> CSV.decode!
+end
+```
 
 ---
 
@@ -209,9 +296,12 @@ Show railway images with branches
 
 > OOP has objects in the large, and methods in the small
 > FP has functions in the large, and functions in the small
-Scott Wlaschin (Functional Programming Design Patterns)
+
+-- Scott Wlaschin (Functional Programming Design Patterns)
 
 ---
+
+### Composition
 
 ```elixir
 response =
@@ -223,28 +313,9 @@ response =
 
 ---
 
+### Functions all the way down
+
 ![autoplay loop mute](./turtles-all-the-way-down.mp4)
-
----
-
-### Recursion
-
-
----
-
-### Happy Cases
-
-```elixir
-
-def
-
-```
-
-Pattern-matching
-"Let it crash"
-
-"NoMethodError"
-handling nil
 
 ---
 
@@ -278,7 +349,6 @@ handling nil
 | Decorator pattern     | fun                |
 | Visitor pattern       | FUNCTIONS          |
 
-
 ---
 
 # [fit] Elixir has
@@ -289,15 +359,13 @@ handling nil
 
 # [fit] Maintainable
 # [fit] Extendable
+# [fit] Elixir
 
 ---
 
-# Elixir
-
-This is why I enjoy Elixir
-
----
+# [fit] @bernheisel
+# [fit] Viget Labs
 
 Sources:
-Cameron Price: Micropatterns
-Scott Wlaschin: Functional Programming Design Patterns
+[Cameron Price: Micropatterns](https://www.youtube.com/watch?v=9uvp4h7gXHg)
+[Scott Wlaschin: Functional Programming Design Patterns](https://www.youtube.com/watch?v=srQt1NAHYC0)
