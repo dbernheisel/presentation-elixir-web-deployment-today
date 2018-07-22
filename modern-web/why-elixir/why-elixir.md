@@ -13,12 +13,36 @@ slidenumbers: true
 
 ---
 
+# [fit] dissatisfaction
+
+---
+
+![Commodore Boot](./c64-boot.png)
+
+^ Let's talk about Commodore 64. This 1982 ancient beauty ran BASIC as
+it's terminal. It was great. It cost $1500 in today dollars when it launched and sported 16 colors and a whopping 64KB RAM, with 20KB available to the user. Can you imagine a computer whose primary user interface was the REPL? Power button -> Boot -> IRB
+
+^ At that time, 36 years ago, the developers hadn't learned the lessons that we know today; their operating system allowed programs to share the same memory with things like the kernel. Isolation wasn't appreciated yet. You could exploit that and do nifty things, like push random values into a memory addresses.
+
+^ Let's push the number 2 into memory address 53280 and see what happens.
+
+---
+
+![Commodore Poke](./c64-poke.png)
+
+^ That's nifty, people could change the border of their terminal from purple to brown. This way of developing didn't stop in 1982 though. It still happens today quite successfully. We have languages like C where you do need to manage the memory your application uses.
+
+^ Great, right? Turns out, developers at-large aren't that great at this. When you let developers manage their own memory, bad things happen like memory leaks and slowing applications.
+
+^ So what did we do? We created newer languages that would abstract that away and hide it. In the mid-90s, we saw languages like Ruby and Python show up. Nothing really happened until Rails came to the scene in 2004, 14 years ago. That's where we learned to make monolith applications
+
+---
+
 # [fit] Monolith
 
-^ First we started with monoliths, but then we got tired of how
-difficult it was for objects to not mess with each other. Following
-those SOLID principles is pretty hard, especially with a diverse team of
-varying experience.
+^ By this point, we've learned to isolate programs and not allow them to interfere with each other so much. But, that didn't stop developers from not isolating their program from itself.
+
+^ You see, the application becomes so large, hence the name monolith, that developers forget that objects share the same ObjectSpace, just like the Commodore64 shared the same 20KB with other programs. Let's see a monolith application's objects manage themselves when you toss a bug in there.
 
 ---
 
@@ -26,32 +50,25 @@ Objects managing their own state
 
 ![autoplay mute](./darkest-timeline.mp4)
 
-^ We realized that if all the objects share the same space, they begin
-to interfere with one another. It turns out it's very difficult for any
-one developer to know how the entire system works, remember all the edge
-cases, and know with certainty that the contracts we tried to write are
-enforced.
+^ We realized that if all the objects share the same space, they begin to interfere with one another. It turns out it's very difficult for any one developer to know how the entire application works, and remember all the edge cases, and have certainty that the contracts we wrote are enforced. When a bug happens, it indeed is the darkest timeline.
 
 ---
 
 # [fit] Microservices
 
-^ So we replaced monoliths with microservices because we felt that
-outages could feel more like a murder mystery and our devops friends
-could get paid more.
+^ So we replaced monoliths with microservices. Microservices allowed us to draw harder lines between our solutions. It brings a couple of cool benefits, like being able to scale services separately, deploy them separately, track them seperately, report errors on them separately, make sure all of them have heartbeats, manage their git repos separately, manage several readmes, ensure the dependency graph makes sense, oh my gosh there so many devops things to do with microservices.
+
+^ Turns out, when bugs appear in microservices, it feels more like you're playing Clue, trying to find out which microservice murdered the application.
 
 ---
 
-![autoplay mute](./mexican-standoff.mp4)
+![autoplay loop mute](./mexican-standoff.mp4)
 
-^ Microservices allowed us to draw harder lines between our solutions.
-It brings a couple of cool benefits, like being able to scale services
-separately, deploy them separately, track them seperately, report errors
-on them separately, make sure all of them have heartbeats, separate
-their git history, manage several readmes, rensure the dependency graph
-makes sense, oh my gosh there so many devops things to do with
-microservices. I was hired to write software, right? Not babysit
-software.
+^ Some folks love microservices so much they want to orchestrate a symphony of them with software like Kubernetes. This is pretty cool when it comes to extending software, because you always feel like you're greenfielding an app. Microservices provide a constant green field for features, and allows space for new ideas. But, it comes with tradeoffs.
+
+^ That tradeoff for me is that I don't personally enjoy devops. Some folks do. I don't. It feels like plumbing a house several times. It's dirty work that very few folks appreciate, and sometimes you have to wonder when the plumbing is done for an application.
+
+^ So what do software developers really want?
 
 ---
 
@@ -59,60 +76,41 @@ software.
 # [fit] Extendable
 # [fit] Enjoyable
 
-^ I want manageable applications in any language, and I have found that
-easiest to with Elixir. Honestly don't care if that means a lot of small
-applications, a set of medium applications, or a large application.
+^ I want manageable applications in any language and honestly don't care if that means a lot of small applications, a set of medium applications, or one large application. I have found that easiest to do with Elixir
 
-^ For monoliths, I've discovered that it's difficult to extend, because
-it's hard to know what the interference may be. Yes, I can just code it,
-run the tests and see what happens, but production and end-users might
-not respect the tests that I forgot to write.
+^ For monoliths, I've discovered that it's difficult to extend, because it's hard to know what the interference may be. The ObjectSpace is unforgiving.
 
-^ On a personal level, I've realized that I don't really enjoy devops.
-Yes I can do it, but it's not for me. Tweaking nginx, haproxy, firewall
-rules, and virtual networks are not details that I want to carea about;
-and it seems that the need for me to care is shrinking with large
-solutions like AWS, Heroku, DigitalOcean, and so forth. In my head,
-orchestrating microservices is not what I want.
-
-^ I want to enjoy extending or maintaining software.
+^ For microservices, I find that it puts a lot more focus on plumbing an application, rather than the solution the application provides. Plus, services like Digital Ocean, AWS, Heroku, and more are providing great solutions today that abstract these problems away from me.
 
 ---
 
 # What makes software enjoyable to work on?
-
-* Tooling
-* Debugging
-* Limited WTF moments
-* Readability
-* Micropatterns
-
 [.build-lists: true]
 
-^ Tooling is a big deal, and we're getting better at it all the time.
-React, Vue, Ruby all have incredible tools that makes setting up and
-managing projects pretty easy. That makes it enjoyable for us because we
-avoid setup-hell.
+* Tooling
+* Limited WTF moments
+* Community
+* Readability
 
-^ Debugging isn't enjoyable in itself, but bugs are inevitable, and
-being able to reproduce, pry into the code, setup breakpoints, see it in
-the browser if needed are essential.
+^ Tooling is a big deal, and we're getting better at it all the time.  React, Vue, Ruby all have incredible tools that makes setting up and managing projects pretty easy. That makes it enjoyable for us because we avoid setup-hell. Also part of tooling is debugging. Debugging isn't enjoyable in itself, but bugs are inevitable, and being able to reproduce, pry into the code, setup breakpoints, see it in the browser if needed are essential. Good tooling means the language doesn't get in the way of your creating.
 
-^ Limiting the amount of WTFs is always a good thing. There's always
-going to be a small amount of these, but when it's a small amount they
-seem to be 'challenges' more than 'frustration'. When there's a ton of
-WTF moments, it reveals that lessons you learned were false, or that the
-language is lying to you. That's not enjoyable.
+^ Limiting the amount of WTFs is always a good thing. There's always going to be a small amount of these, but when stays a small amount I find these to feel more like 'challenges' instead of 'frustration'. When there's a ton of WTF moments, it reveals that lessons you learned were false, or that the language is lying to you. That's not enjoyable. The understanding is wrong.
 
-^ Reading code is what we do every day as software developers. We have
-to read our own, our own from 10 years ago, our co-workers, random
-folks' on the internet. We all at least know our primary language, and
-development is a second, third, or forth, so we have in our brains a
-translation later. Some programming languages are so foreign to us, that
-it breaks our ability to translate into our natural language. If we
-can't read it, we therefore can't communicate with it, and so we resort
-to SPEAKING LOUDER or USING HAND MOTIONS to communicate, which
-unfortunately doesn't work yet with computers.
+^ Speaking of WTF moments. WTF is up with eslint? WTF is up with leftpad?
+
+^ Community is also a huge contributor to enjoying development. The excitement around a language; all the new ideas that are coming like GraphQL and WebAssembly that really have the potential to change the way we work. That comes out of community. Otherwise, what's the point of opensource without community? Unless you're a one-person shop, you need your coworkers. Community helps you improve understanding. It's documentation. Community is local and global. If no one is talking about it, neither will you without extraordinary willpower.
+
+> "No man is an island entire of itself; every man is a piece of the continent, a part of the main" -- John Donne (1572)
+
+^ Reading code is what we do every day as software developers. We have to read our own code, our code from 10 years ago, our co-workers, random folks' on the internet. We all at least know our primary language, and development is a second, third, or forth, so we have in our brains a translation layer. Some programming languages are so foreign to us, that it breaks our ability to translate into our natural language. If we can't read it, we therefore can't communicate with it, and so we resort to SPEAKING LOUDER or USING HAND MOTIONS to communicate, which unfortunately doesn't work yet with computers.
+
+^ Reading code is the primary way that we communicate in software, so it's incredibly important for the language itself to be expressive enough and easily able to translate to your primary language like English.
+
+---
+
+# [fit] Communication
+
+^ All these traits lead to one thing: Communication. When you read good code, there's a feeling of relatedness.
 
 ---
 
@@ -120,75 +118,73 @@ unfortunately doesn't work yet with computers.
 
 # !CLEVER
 
-^ If I review someone else's code and see a clever method, I usually
-find it because I had to read that code several times to understand it.
+^ Which is why it's important to not be clever with your code. We're not underground hackers with secret access to the depths of the virtual machine. The goal is not to make such complicated software that no one else but us can read it.
 
-^ It's not because I'm dumb; it's not because they're a genius; it's
-because they used an edge-case in the language to accomplish their goal
-at the cost of revealing their intention. They spoke in unnatural
-language or a different dialect. Problem is, we're supposed to be able
-to speak the same language. It's not as understandable. The code doesn't
-read like a story that I'm able to relate with quickly.
+^ The goal isn't to master the language so much that you exploit some of its weirdness and have your coworkers suffer that.
 
-^ Clever code is not saving anyone time. It's wasting mine, probably
-yours, and definitely your future self's when you realize you can't read
-whatever bullshit you just wrote.
+^ The goal is to communicate with yourself and your co-workers about how you're solving this problem via code. We're not magical hackers saving time with our cleverness. Oftentimes our cleverness is wasting our future self's time and definitely our coworkers when they're reviewing code and debugging.
 
+^ Clever code speaks in unnatural language or at least a different dialect. Problem is, we're supposed to be able to speak the same language. It's not as understandable. It's difficult to relate with quickly.
+
+---
+
+# What makes software enjoyable to work on?
+
+* Tooling
+* Limited WTF moments
+* Readability
+* Community
+* Micropatterns
+
+^ Lastly, and most important in this talk, is micropatterns.  Micropatterns are those small patterns that might be imperceptable, but give you that "good feeling" when you see them. They're recognized, they're predictable, they're familiar. It's like seeing good friends, good friends that understand me.
 
 ---
 
 # [fit] Micropatterns
 
-^ Lastly, and most important in this talk, is micropatterns.
-Micropatterns are those small patterns that might be imperceptable, but
-give you that "good feeling" when you see them. They're recognized,
-they're predictable, they're familiar. It's like seeing good friends,
-good friends that understand me. Because really, what we want in our
-core human selves is to be understood.
+![autoplay](./micropatterns-music.mp4)
+
+^ Or it could be very perceivable. It could definitely invoke nostalgia
+
+---
+
+# [fit] Micropatterns
+
+^ Socially, we experience the same micropatterns everywhere. We have a routine in the morning with slight variations in traffic, but we know it. We listen to the same song several times and learn the patterns like the bass line, and notice the small deviations in new songs that become interesting.
+
+^ Why does this matter? Because these patterns are recognizable. They comfortable. They're predictable. We get social anxiety when we're in a room full of people we don't know. It becomes noise, we can't find patterns early enough so we get frustrated and quit the scene, saying "These people don't understand me, and I don't understand them." Unrecognized patterns are no longer comfortable.
+
+^ There is a huge win when you come to understand a new pattern, but it's large barrier to entry. When it's the language acting as a barrier, then you have 2 problems: the business problem, and the language problem.
 
 ---
 
 # [fit] UNDERSTOOD
 
-^ I want to be the most understood person in the room. I want anyone
-that looks at my code to be able to understand it and extend it.
+^ Back to code, these micropatterns are the common ways to understand and be understood which is a core need of a human. I want to be the most understood person in the room. That's what any sane person wants.
 
 ---
 
 # [fit] ELIXIR
 
-^ So, let's talk about Elixir. Elixir is a language introduced about 7
-years ago in 2011. It's a higher-level language that tricks you into
-thinking you're writing Ruby. It was developed by a person named Jose
-Valim who was big in the Ruby community and was struggling to make Ruby
-work well with concurrency. He decided to instead leverage Erlang's
-platform, but found writing Erlang too obtuse. Introducing Elixir.
+^ So, let's talk about Elixir. Elixir is a language introduced about 7 years ago in 2011. It's a higher-level language that tricks you into thinking you're writing Ruby. It was developed by a person named Jose Valim who was big in the Ruby community and was struggling to make Ruby work well with concurrency. He decided to instead leverage Erlang's platform, but found writing Erlang too obtuse. Introducing Elixir.
 
 ^ It compiles down to Erlang bytecode. What is Erlang?
 
-^ Erlang is a 32 year old language originally developed for making the
-telephone systems stable and without downtime. The BEAM Virtual Machine
-compiles it to C and is extremely fast.
+^ Erlang is a 32 year old language originally developed for making the telephone systems stable and without downtime. Erlang code is compiled an interpreted through the BEAM Virtual Machine, which in turn is compiled to C and is extremely fast. Much like Java is to JVM, Erlang is to BEAM.
 
-^ Elixir is a functional language that takes advantage of all the system
-resources. It's not just a language though, because it's built on top of
-Erlang which provides a mini OS called OTP. We won't explore that today,
-but just know that it is quite unique in the set of tools it provides
-developers. A sneak peak: it comes with an HTTP server, FTP server, SSH
-serer, database, and more.
+^ Elixir is a functional language that takes advantage of all the system resources. It's not just a language though, because it's built on top of Erlang which provides a mini operating system called OTP. We won't explore that today, but just know that it is quite unique in the set of tools it provides developers. A sneak peak: it comes with an HTTP server, FTP server, SSH server, a key-value database like Redis, and more. That's basically stdlib.
 
 ---
 
 ## Micropatterns
 
 * Pipelines
-* Composition
 * Totality
 * Monads
 * Happy path
+* Composition
 
-^ There are some prominent micropatterns in Elixir that make it a
-pleasure to use.
+^ There are some prominent micropatterns in Elixir that make it a pleasure to use.
 
 ---
 
@@ -197,7 +193,7 @@ pleasure to use.
 ```elixir
 def load(filename)
   filename
-  |> read()
+  |> read_file()
   |> parse()
   |> validate()
 end
@@ -232,25 +228,22 @@ have an input, and you always get output.
 ^ The input comes in as one form, a transformation happens, and then you
 have an expected output
 
----
-
-![autoplay mute](./information-highway.mp4)
-
 ^ It's simple, and very effective. The operator itself helps with
 readability a lot, and using it encourages developers to structure their
 functions to work well with pipes.
 
 ^ If we think about how computers work, we think in terms of lines.
 These lines carry electrical pulses that pulse in predictable patterns.
-These pulses turn into 1's and 0's, which in turn turn into words, which
-form instructions, which perform actions for us as instructed. These all
+These pulses turn into 1's and 0's, which turn into words, which
+form instructions, which perform actions for us. These all
 happen linearly.
 
-^ The data that is pulsed happens in a pipeline at several levels. I
-just illustrated the smallest level, but as Wreck-It Ralph is
-illustrating, it is the same pattern as we get larger. Data is passed
-through pipelines, which connect with other pipelines, with collectively
-give us cool things like GUIs, the internet, and wifi.
+---
+
+![autoplay mute](./information-highway.mp4)
+
+
+^ These pipelines are connected to each other end-to-end, and deliver data to us and start to form the things we know of today, like wifi, GUIs, the internet, your phone. Data is passed through pipelines.
 
 ---
 
@@ -267,11 +260,7 @@ end
 
 ^ Back to our program, this pipeline is readable and simply reads like
 this: "take this filename, open the file and read it, parse the file
-, and validate the file data."
-
-^ It's a system of functions working together, and we stitch these
-functions together to make longer pipes of data, and these pipes
-constructed into other pipes, and so on. We've named this function 'load'
+, and validate the file data." We've named this function 'load'
 
 ^ We can trust this pipeline because we believe in another micropattern
 called Totality
@@ -329,7 +318,7 @@ rewrite it a bit.
 def read(filename) do
   case filename do
     nil ->
-      {:error, "Filename not supplied"}
+      {:error, ["Filename not supplied"]}
     filename ->
       {:ok, read_file!(filename)}
     end
@@ -343,22 +332,24 @@ either one of these things: something, or nothing. In this case, I'm
 returning a tuple that allows me to switch upon it in the pipeline. The
 first element in the tuple is either an :ok atom, or an :error atom.
 
+---
+
+![Railway Monad](./railway-monad.png)
+
 ^ Going back to the railway metaphor, let's see how monads can help us
 construct pipelines.
 
----
-
-Show railway images with branches
+^ At this point, I've split the possible directions of the data into two directions: a happy path, and an unhappy path.
 
 ---
 
-### Happy Path
+### Allowing an Unhappy Path
 
 ```elixir
 @spec parse({:ok | :error, Enumerable.t}) :: {:ok | :error, Enumerable.t}
 def parse({:ok, raw_rows}) do   # Happy Path :)
   parsed_rows =
-    Enum.map(raw_rows, fn raw_row ->
+    Enum.map raw_rows, fn raw_row ->
       %Row{
         name: raw_row[0],
         email: raw_row[1],
@@ -369,17 +360,19 @@ end
 def parse(errors), do: errors   # Unhappy Path :(
 ```
 
-^ It's easy to program for the happy path when the language includes
-pattern-matching. With pattern-matching, I can easily identify what I
-need from the input so I can transform the data and return it as the
-output. I usually do this first because it's the first thing that's on
-my mind, "How do I make this work?"
+^ Pattern matching is a wonderful feature of a language, like Elixir, that enables developers to program for the happy obviously, and remind them there are unhappy paths. What's happening here is that when the data is passed into the function, the function will match against the values coming in, and execute the appropriate function body that matches the clause. For example, in the first function clause, I'm requiring that the first item in the tuple is an :ok atom. The second item gets assigned to `raw_rows`.
 
-^ It's also easy to recognize that I have limited my happy path in the
+^ It's easy to recognize that I have limited my happy path in the
 clause, and it's equally as easy to include an unhappy path clause right
 after it. In this case, _only_ in the case of an {:ok} tuple will it
 proceed to transform; otherwise, the other clause will match and simply
 pass on the data as-is with no transformation.
+
+^ It's easy to program for the unhappy path when the language includes
+pattern-matching. With pattern-matching, I can easily identify what I
+need from the input so I can transform the data and return it as the
+output. I usually do this first because it's the first thing that's on
+my mind, "How do I make this work?"
 
 ^ Programming for the unhappy path is more difficult in other languages
 without pattern-matching. It's more difficult because it's easier to
@@ -389,6 +382,7 @@ forget. A big example of what we forget to handle is Nil
 
 # [fit] Nil
 # [fit] NoMethodError
+# [fit] AttributeError
 
 ---
 
@@ -396,7 +390,7 @@ forget. A big example of what we forget to handle is Nil
 
 ```elixir
 @spec read(String.t) :: {:ok | :error, Enumerable.t}
-def read(nil), do: {:error, "Filename not supplied"}
+def read(nil), do: {:error, ["Filename not supplied"]}
 def read(filename) do
   {:ok, read_file!(filename)}
 end
@@ -425,18 +419,7 @@ end
 ^ Well look at that; it's just another function that calls other
 functions.
 
----
-
-### Composition
-
-> OOP has objects in the large, and methods in the small
-> FP has functions in the large, and functions in the small
-
--- Scott Wlaschin (Functional Programming Design Patterns)
-
-^ This pattern happens everywhere because functional programming is
-consistent. Every problem is solved with a function. You don't have to
-shift paradigms in how to solve a problem depending on its scale.
+^ Let's go a couple levels higher. Let's think about the web request cycle.
 
 ---
 
@@ -458,7 +441,7 @@ response =
 
 ---
 
-^ I've been priming you for the big reveal.
+^ I've been priming you for the big reveal. We've been talking about these micropatterns. Concepts like composition, pattern-matching, happy-path, totality, monads, and piplines.
 
 ---
 
@@ -473,6 +456,17 @@ response =
 > That's how Absinthe works
 > That's how Hex works
 > That's how everything works
+
+---
+
+> OOP has objects in the large, and methods in the small
+> FP has functions in the large, and functions in the small
+
+-- Scott Wlaschin (Functional Programming Design Patterns)
+
+^ Composition happens everywhere. It's a recognizable pattern because it's everywhere. Functional programming is consistent. Every problem is solved with a function. You don't have to shift paradigms in how to solve a problem depending on its scale.
+
+^ This is comforting, because when we already one business problem we're trying to solve, we don't have a language problem, or tooling problem clouding our judgments. Our brains can focus on one thing at a time.
 
 ---
 
@@ -501,11 +495,19 @@ everything is just a set of inputs and outputs.
 | Decorator pattern     | fun                |
 | Visitor pattern       | FUNCTIONS          |
 
+^ All of these principles are great and valid and promote maintainable programs, but when there are so many of those patterns, and sometimes they compete, it's difficult to get just one of them down until you have the time to experience the ugly parts of not following those principles.
+
+^ With functional programming and Elixir, the coding practices that the community has championed and learned from each other and learned from the sins of other languages are much easier to pick up and recognize. It's not foreign.
+
 ---
 
 # [fit] Elixir has
 # [fit] excellent
 # [fit] patterns
+
+^ When we meet syntactical noise, tedious tasks like memory management, and so many principles to remember in order to keep ourselves in line as well as our friends, it's becomes easier to quit and get frustrated.
+
+^ When we see a pattern, we delight in seeing it reoccur and with Elixir we see it often. It's simple. It's understandable. Elixir doesn't get in the way, it doesn't add noise while you're trying to solve a problem
 
 ---
 
@@ -515,8 +517,14 @@ everything is just a set of inputs and outputs.
 
 ---
 
+# [fit] Understood
+
+^ This is why I enjoy Elixir.
+
+---
+
 # [fit] @bernheisel
-# [fit] Viget Labs
+
 
 Sources:
 [Cameron Price: Micropatterns](https://www.youtube.com/watch?v=9uvp4h7gXHg)
