@@ -91,6 +91,7 @@ Objects managing their own state
 * Limited WTF moments
 * Community
 * Readability
+> "No man is an island entire of itself; every man is a piece of the continent, a part of the main" -- John Donne (1572)
 
 ^ Tooling is a big deal, and we're getting better at it all the time.  React, Vue, Ruby all have incredible tools that makes setting up and managing projects pretty easy. That makes it enjoyable for us because we avoid setup-hell. Also part of tooling is debugging. Debugging isn't enjoyable in itself, but bugs are inevitable, and being able to reproduce, pry into the code, setup breakpoints, see it in the browser if needed are essential. Good tooling means the language doesn't get in the way of your creating.
 
@@ -99,8 +100,6 @@ Objects managing their own state
 ^ Speaking of WTF moments. WTF is up with eslint? WTF is up with leftpad?
 
 ^ Community is also a huge contributor to enjoying development. The excitement around a language; all the new ideas that are coming like GraphQL and WebAssembly that really have the potential to change the way we work. That comes out of community. Otherwise, what's the point of opensource without community? Unless you're a one-person shop, you need your coworkers. Community helps you improve understanding. It's documentation. Community is local and global. If no one is talking about it, neither will you without extraordinary willpower.
-
-> "No man is an island entire of itself; every man is a piece of the continent, a part of the main" -- John Donne (1572)
 
 ^ Reading code is what we do every day as software developers. We have to read our own code, our code from 10 years ago, our co-workers, random folks' on the internet. We all at least know our primary language, and development is a second, third, or forth, so we have in our brains a translation layer. Some programming languages are so foreign to us, that it breaks our ability to translate into our natural language. If we can't read it, we therefore can't communicate with it, and so we resort to SPEAKING LOUDER or USING HAND MOTIONS to communicate, which unfortunately doesn't work yet with computers.
 
@@ -123,7 +122,6 @@ Objects managing their own state
 ^ The goal isn't to master the language so much that you exploit some of its weirdness and have your coworkers suffer that.
 
 ^ The goal is to communicate with yourself and your co-workers about how you're solving this problem via code. We're not magical hackers saving time with our cleverness. Oftentimes our cleverness is wasting our future self's time and definitely our coworkers when they're reviewing code and debugging.
-
 ^ Clever code speaks in unnatural language or at least a different dialect. Problem is, we're supposed to be able to speak the same language. It's not as understandable. It's difficult to relate with quickly.
 
 ---
@@ -201,11 +199,7 @@ end
 # validate(parse(read(filename)))
 ```
 
-^ Pipelines present a clear path of input and output, and what is
-happening at every train stop. It reveals the transformation of data
-very clearly. The operator that you see here, the sideways triangle is
-just a pipe and right-angle. It's taking the expression or variable
-above it and passing it into the first argument of the next function.
+^ Pipelines present a clear path of input and output, and what is happening at every train stop. It reveals the transformation of data very clearly. The operator that you see here, the sideways triangle is just a pipe and right-angle. It's taking the expression or variable above it and passing it into the first argument of the next function.
 
 The second line is pretty hard to follow, so the pipe operator makes it
 easy to see the line of transformation.
@@ -216,8 +210,7 @@ easy to see the line of transformation.
 
 ![fit](./railway-io.png)
 
-^ The big thing here is that everything is very predictable. You always
-have an input, and you always get output.
+^ The big thing here is that everything is very predictable. You always have an input, and you always get output.
 
 ---
 
@@ -225,18 +218,11 @@ have an input, and you always get output.
 
 ![fit](./railway-transformation.png)
 
-^ The input comes in as one form, a transformation happens, and then you
-have an expected output
+^ The input comes in as one form, a transformation happens, and then you have an expected output
 
-^ It's simple, and very effective. The operator itself helps with
-readability a lot, and using it encourages developers to structure their
-functions to work well with pipes.
+^ It's simple, and very effective. The operator itself helps with readability a lot, and using it encourages developers to structure their functions to work well with pipes.
 
-^ If we think about how computers work, we think in terms of lines.
-These lines carry electrical pulses that pulse in predictable patterns.
-These pulses turn into 1's and 0's, which turn into words, which
-form instructions, which perform actions for us. These all
-happen linearly.
+^ If we think about how computers work, we think in terms of lines. These lines carry electrical pulses that pulse in predictable patterns. These pulses turn into 1's and 0's, which turn into words, which form instructions, which perform actions for us. These all happen linearly.
 
 ---
 
@@ -258,12 +244,9 @@ def load(filename)
 end
 ```
 
-^ Back to our program, this pipeline is readable and simply reads like
-this: "take this filename, open the file and read it, parse the file
-, and validate the file data." We've named this function 'load'
+^ Back to our program, this pipeline is readable and simply reads like this: "take this filename, open the file and read it, parse the file , and validate the file data." We've named this function 'load'
 
-^ We can trust this pipeline because we believe in another micropattern
-called Totality
+^ We can trust this pipeline because we believe in another micropattern called Totality
 
 ---
 
@@ -286,28 +269,15 @@ def read(filename) do
 end
 ```
 
-^ Totality is the pattern that your function does not lie to you or
-surprise you with an unexpected result.
+^ Totality is the pattern that your function does not lie to you or surprise you with an unexpected result.
 
-^ Defining types in Elixir is optional, but when you have it, it serves
-as documentation to other developers, and it indicates what kind of
-input and output you should expect.
+^ Defining types in Elixir is optional, but when you have it, it serves as documentation to other developers, and it indicates what kind of input and output you should expect.
 
-^ There is tooling available to check if you're honoring your typespecs
-at compile-time. In this example, the specs above each function tells
-us what to expect.
+^ There is tooling available to check if you're honoring your typespecs at compile-time. In this example, the specs above each function tells us what to expect.
 
-^ The first function is simple. It says it takes in a string, and it
-returns a list of rows. This function is contrived, but just looking at
-it, you'll see that there's absolutely no way for it to surprise you.
-You give it a string, and it always gives you a list of rows.
+^ The first function is simple. It says it takes in a string, and it returns a list of rows. This function is contrived, but just looking at it, you'll see that there's absolutely no way for it to surprise you. You give it a string, and it always gives you a list of rows.
 
-^ The second function is not total because it has the option to raise an
-exception. It's not a total function. I'm supposed to always get an
-Enumerable. BTW, Please don't do this, it's awful and performance-wise
-is never better. As a developer, I don't need you to decide for me to
-raise an exception in my application, I need you to be a monad. Let's
-rewrite it a bit.
+^ The second function is not total because it has the option to raise an exception. It's not a total function. I'm supposed to always get an Enumerable. BTW, Please don't do this, it's awful and performance-wise is never better. As a developer, I don't need you to decide for me to raise an exception in my application, I need you to be a monad. Let's rewrite it a bit.
 
 ---
 
@@ -326,18 +296,13 @@ def read(filename) do
 end
 ```
 
-^ This first function is a monad. The difference here that makes it a
-monad is that it gives you metadata about the function's result. It's
-either one of these things: something, or nothing. In this case, I'm
-returning a tuple that allows me to switch upon it in the pipeline. The
-first element in the tuple is either an :ok atom, or an :error atom.
+^ This first function is a monad. The difference here that makes it a monad is that it gives you metadata about the function's result. It's either one of these things: something, or nothing. In this case, I'm returning a tuple that allows me to switch upon it in the pipeline. The first element in the tuple is either an `:ok` atom, or an `:error` atom.
 
 ---
 
 ![Railway Monad](./railway-monad.png)
 
-^ Going back to the railway metaphor, let's see how monads can help us
-construct pipelines.
+^ Going back to the railway metaphor, let's see how monads can help us construct pipelines.
 
 ^ At this point, I've split the possible directions of the data into two directions: a happy path, and an unhappy path.
 
@@ -360,11 +325,11 @@ end
 def parse(errors), do: errors   # Unhappy Path :(
 ```
 
-^ Pattern matching is a wonderful feature of a language, like Elixir, that enables developers to program for the happy obviously, and remind them there are unhappy paths. What's happening here is that when the data is passed into the function, the function will match against the values coming in, and execute the appropriate function body that matches the clause. For example, in the first function clause, I'm requiring that the first item in the tuple is an :ok atom. The second item gets assigned to `raw_rows`.
+^ Pattern matching is a wonderful feature of a language, like Elixir, that enables developers to program for the happy obviously, and remind them there are unhappy paths. What's happening here is that when the data is passed into the function, the function will match against the values coming in, and execute the appropriate function body that matches the clause. For example, in the first function clause, I'm requiring that the first item in the tuple is an `:ok` atom. The second item gets assigned to `raw_rows`.
 
 ^ It's easy to recognize that I have limited my happy path in the
 clause, and it's equally as easy to include an unhappy path clause right
-after it. In this case, _only_ in the case of an {:ok} tuple will it
+after it. In this case, _only_ in the case of an `{:ok}` tuple will it
 proceed to transform; otherwise, the other clause will match and simply
 pass on the data as-is with no transformation.
 
@@ -376,13 +341,15 @@ my mind, "How do I make this work?"
 
 ^ Programming for the unhappy path is more difficult in other languages
 without pattern-matching. It's more difficult because it's easier to
-forget. A big example of what we forget to handle is Nil
+forget. A big example of what we forget to handle is `Nil`
 
 ---
 
 # [fit] Nil
 # [fit] NoMethodError
 # [fit] AttributeError
+
+^ Don't these error just annoy you? I hate this crap
 
 ---
 
@@ -396,10 +363,7 @@ def read(filename) do
 end
 ```
 
-^ Let's go back to an earlier code sample. Here we turned our function
-into a monad, and leveraged pattern-matching to recognize our happy
-path.  In the happy path, notice that I'm simply calling another
-function.
+^ Let's go back to an earlier code sample. Here we turned our function into a monad, and leveraged pattern-matching to recognize our happy path.  In the happy path, notice that I'm simply calling another function.
 
 ^ That's it. That's composition. Let's look at `read_file!/1`
 
@@ -433,11 +397,15 @@ response =
   |> view()
 ```
 
+^ It's the same thing, just higher-level functions calling more functions. The request is sent to the app router. The app router processes the request and determines which controller to call. The controller then determines which action to call. The action then passes itself to the view which renders the template, and finally the result of that is the response, which is then sent back to the end-user.
+
 ---
 
 ### Functions all the way down
 
 ![autoplay loop mute](./turtles-all-the-way-down.mp4)
+
+^ It's functions all the way down. Functions are happening everywhere.
 
 ---
 
@@ -448,6 +416,8 @@ response =
 # [fit] NOT
 # [fit] MICRO
 
+^ They're not actually micropatterns; they're just PATTERNS.
+
 ---
 
 > That's how Plug works
@@ -456,6 +426,12 @@ response =
 > That's how Absinthe works
 > That's how Hex works
 > That's how everything works
+
+^ Every library provides a pipeline to plug your app into. Plug, the library that handles web requests is just a bunch of functions. Phoenix which handles the MVC structure of web applications; just functions. Ecto is just a bunch of meta-programmed functions, but still functions. Absinthe the GraphQL adapter; also functions. The package manager Hex is also just CLI-focused functions.
+
+^ That's how all the stuff in Elixir works. There's no global pollution. There is a disdain for clever code, because that's more difficult to with functional programming.
+
+^ The patterns with Elixir are consistent
 
 ---
 
@@ -483,7 +459,6 @@ everything is just a set of inputs and outputs.
 
 ---
 
----
 | Object Oriented       | Functional         |
 |-----------------------|--------------------|
 | Single Responsibility | functions          |
@@ -505,9 +480,9 @@ everything is just a set of inputs and outputs.
 # [fit] excellent
 # [fit] patterns
 
-^ When we meet syntactical noise, tedious tasks like memory management, and so many principles to remember in order to keep ourselves in line as well as our friends, it's becomes easier to quit and get frustrated.
+^ When we meet syntactical noise, tedious tasks like memory management, and so many principles to remember in order to keep ourselves in line as well as our friends, it's becomes easier to quit and get frustrated. It's not fun.
 
-^ When we see a pattern, we delight in seeing it reoccur and with Elixir we see it often. It's simple. It's understandable. Elixir doesn't get in the way, it doesn't add noise while you're trying to solve a problem
+^ When we see a pattern, we delight in seeing it reoccur. With Elixir we see patterns often. It's simple. It's understandable. Elixir doesn't get in the way, it doesn't add noise while you're trying to solve a problem
 
 ---
 
