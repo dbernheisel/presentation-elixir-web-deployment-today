@@ -81,11 +81,15 @@ Musically, we're getting feedback:
 [Link opening a chest]
 [Final Fantasy victory fanfare]
 
+It's a nice and tight communication cycle. We open chest, we get reward. We beat bad guys, we get points.
+
 Thinking back to pop music, almost every song on the radio has a recognizable pattern, whether you've picked it out or not: Intro, Verse, Chorus, Verse, Chorus, Bridge, Chorus, Outro.
 
 If we analyzed the notes themselves, there are patterns of notes that musicians know sound good together called scales. Notes played that are not on the given scale will create a harsh sound creating dissonance in the sound waves; an out-of-tune guitar, for example.
 
-Video game designers know this as well and know that they really can't have lyrics being blasted at you while you're reading text on the screen and moving your characters around. Have you ever turned down the radio when you're getting close to your destination? We do this because we're trying to focus. Likewise, video games want to focus your attention on the game, not the lyrics or even the music by itself; they want to envelope you into the world.
+Video game designers know this as well and know that they really can't have lyrics being blasted at you while you're reading text on the screen and moving your characters around. Have you ever turned down the radio when you're getting close to your destination? We do this because we're trying to focus.
+
+Likewise, video games want to focus your attention on the game, not the lyrics or even the music by itself; they want to envelope you into the world.
 
 So, what is fun? In graph form, it looks a little like this:
 
@@ -142,30 +146,91 @@ Let's change the words a little bit:
 - And adjust according to the feedback we experience.
 
 
-It turns out that developers are players in the game of software.
+It turns out that developers are players in the game of software. Do you know what this means?
 
 YES WE DID IT
 WE'RE IN TRON
 
 [Tron image]
 
+[Mission Accomplished meme]
+
 We're full circle now.
 So, the journey so far:
 
 - We are developers that solve problems for a living.
 - Sometimes these problems aren't fun.
-- We know now that fun is recognizable patterns that reoccur and evolve so we learn.
+- We now know that fun is: learning recognizable and reoccurring patterns with quick feedback loops.
 - We want development to be fun.
 
 ---
 
-# Elixir
+# Development
 
 Now, let's apply this to development. So, now we know it's all about patterns, what patterns are worth repeating?
 
+Let's talk about JavaScript.
 
+[Image of blue]
+
+In the beginning, there was a vast ocean with no known islands. It was a frustrating time. JavaScript pirates were sailing the high seas, plundering and collecting all the knowledge they could find. The only pattern was that there were no patterns. Every dev for devself, equipped with their cannons: copy and paste.
+
+[Image blurred islands]
+
+The JavaScript pirates started to settle onto a newly discovered island and organize themselves into a government. We'll call this island jQuery. Everyone rejoiced; it seems that pirates no longer needed to plunder, the JavaScripters can plant and plow like civilized people. More time passes, and more islands are discovered.
+
+Some adventurous javascripters, having grown discontent plowing and planting, started to move to these islands and develop their own culture. These cultures grew and grew and grew. We'll call these islands Emberton, React Town, Vueville, Angular City.
+
+[Image islands]
+
+This may seem obvious now, but early days of JavaScript programming were hard, frustrating, and thoroughly unenjoyable. The opposite of fun. However, with the rise of recognizable patterns, like Node, Vue, and *cough* Webpack, it has made the world a better place. Developers can now communicate much more effectively and have smaller feedback loops.
 
 ---
 
-What patterns are worth repeating?
+# What patterns are worth repeating?
+
+From here on out, I'm going to use my favorite language Elixir for examples. If you don't know Elixir, that's OK. I can prep you:
+It's a high-level functional programming language that reads like Ruby, compiles to the battle-tested platform of Erlang, can run on a Raspberry Pi, power the entire world's telephone system, push OpenGL graphics, and serve up to 2 million websockets concurrently on a single Digital Ocean instance.
+
+If the language you're using doesn't let you easily perform these patterns, that's ok. There are other good patterns in your language of choice. Find them. Or learn Elixir, that's great too.
+
+# Pipelines
+
+# Totality (Typespecs)
+
+# Monads (Maybe, Tuple Metadata, Accumulators)
+
+Not to say that Elixir has complete support for academic and mathematical monads, but the community's code style for Elixir leans towards using monads.
+
+If you don't know what a monad is, that's totally fine. The simplest definition: A monad is a unit of data and metadata about the data.
+
+The best and smallest example I can think of for monads is the Maybe Monad:
+
+```elixir
+case my_function() do
+  {:ok, success_data} -> happy_path()
+  {:error, data_about_error} -> unhappy_path()
+end
+```
+
+Another example:
+
+```elixir
+reducer = fn (data, accumulator) ->
+  case my_function() do
+    {:ok, data} -> {:cont, data}
+    {:error, data} -> {:halt, data}
+  end
+end
+
+final_fata = Enum.reduce_while(stream, &reducer)
+```
+
+
+# Happy-path ()
+
+# Composition (Functions in the small and large)
+
+
+
 
