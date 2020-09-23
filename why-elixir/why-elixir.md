@@ -1,3 +1,444 @@
+# Nostalgia and Programming Patterns
+
+## Introduction
+
+[speaking head]
+
+When we recognize music, movies, old photos, or video games of the past, it has
+a powerful effect: nostalgia. It's a pattern of the past that we remember
+fondly.
+
+When we write code, we recall patterns of the past to consider as tools to help
+solve today's problem.
+
+I'd like to explore the connection between software development and nostalgia,
+and have some fun while we're exploring the theory.
+
+## What is Nostalgia
+
+The word "nostalgia" started as a medical condition. Doctors invented the word
+with the Greek roots 'nostos', meaning returning home, and 'algos' meaning
+pain. It was invented in 1688, when Swiss soldiers would miss home so much,
+that they would mentally break down, and no longer be able to 'be a soldier';
+they longed for who they used to be.
+
+Nostalgia today is much less than a medical condition, and now considered
+a temporary emotion, usually triggered by some sense, like sight or sound. The
+word is no longer associated with the negative effects to the person; in fact
+quite the opposite; it now means "fondly remembering the past".
+
+Inducing nostalgia can boost psychological well-being; increase feelings of
+self-esteem and **social belonging**, encourage psychological growth. Nostalgia
+can be a restorative way of coping with negative stress.
+
+Marketing knows about nostalgia; it's a powerful selling tool. There are 11
+Star Wars films; 10 Batman movies; 16 Final Fantasy games. Remasters of
+remasters, remakes on top of remakes. [Remixes of older
+songs](https://www.youtube.com/watch?v=TNYGLMQxZ64); you get it. Generally,
+folks **want** to be in that mental space.
+
+## Where Nostalgia Comes From
+
+![Lifespan Retrieval Curve](./Lifespan_Retrieval_Curve.jpg)
+
+This is called the [Lifespan Retrieval
+Curve](https://en.wikipedia.org/wiki/Reminiscence_bump).
+
+- 0-5yrs Childhood Amnesia
+- 10-30yrs Reminisence Bump (this is our nostalgic period)
+- 30+ Period of Recency
+
+Our autobiographical memory -- that is, our psychological history of ourselves
+-- on average shows that most of our memories are formed between the ages of
+10-30 years old. Younger than 10 is considered childhood amnesia; greater than
+that is considered too recent. For the life of me, I can't remember what being
+6 was like; I remember snippets like riding my bike around the neighborhood in
+odd moments of self-reflection. Likewise, I couldn't tell you what I did
+2 years ago that affected my life profoundly. It's unconsciencely regarded as
+too recent to be formative of "who I am."
+
+Our young adulthood is where we develop our self-identity; it's when we
+discover who we are and want to be. We'll come back around to that bit. For me,
+the time period is the 1990s and 2000s.
+
+[cut to 90s]
+
+Back in the 1990s, there were several things that I did:
+
+- Listened to cassettes I recorded from the stereo on my fuzzy earphones.
+- Stopped at every Magic Eye book in Books-a-million, Borders, Hastings, or
+  Barnes & Noble to see if I could see "it".
+- Spent 30 minutes or more just trying to decide what movie to rent; maybe it
+  took so long because I couldn't accept that the movie I wanted to see didn't
+  have the VHS behind it.
+- Got really excited when the phone rang.
+- Watched Bewitched and Dick Van Dyke on Nick-at-night.
+- Replayed in my head the "The Log Song" from Ren & Stimpy. It was an earworm
+  that never left. To this day I still hum it. If it wasn't that song, it was
+  "Blue" by Eiffel 65.
+- I cleaned up poop from my Tamagotchi, jumped on goombas, and a little latter
+  double-barrel shotgunned demons in Doom.
+
+Let's stop at that last one: video games.
+
+## [Theory of Fun](https://www.theoryoffun.com/)
+
+[Super Mario gameplay]
+
+Super Mario. The hero plumber that would grow up to be the most iconic and
+recognizable video game character of all time. Made by a company formed in
+1889: Nintendo.
+
+Video games are a source of nostalgia for many people. They're fun. They're
+a way to escape the stress of the day. Many video games, such as Final Fantasy,
+are epic stories that we can get lost within; just like books but these are
+interactive! Others, like classic Mario, have very little story and just focus
+on addictive game mechanics.
+
+Video games are developed to be fun; otherwise why would we play them? Most
+gamers aren't playing for pure punishment (looking at you, Mega Man 9). Turns
+out, there's a lot of social science that goes into designing games to get and
+keep players!
+
+The book "Theory of Fun" outlines some basics of what it takes to create a good
+game. In it, the author Raph Koster includes a quote by Chris Crawford saying:
+
+> fun is the emotional response to learning
+
+And later Raph Koster:
+
+> Fun in games arises out of mastery. It arises out of comprehension. It is the
+> act of solving puzzles that makes games fun. With games, learning is the
+> drug.
+
+> The idea was, games are systems built to help us learn patterns, and fun is
+> a neurochemical reward to encourage us to keep trying.
+
+These games teach us patterns, and then delightfully introduce variations on
+them, which keeps us learning. We see new situations as the game progresses,
+and have new ways to apply the learned patterns to them; or perhaps combine
+patterns.
+
+Let's look at an example.
+
+[Super Mario Bros - Level One]
+
+In the original Super Mario Bros, we know that Mario moves right to advance to the goal; we can tell because he's on the left side of the screen, and you can't go left; you must go right.
+
+The game introduces a pattern by establishing if you touch the Goombas, you
+die. Noted-- don't touch bad guys.
+
+Let's try pushing one of the buttons on the gamepad. Turns out Mario can jump!
+Let's avoid those bad guys. Noted-- I can move right and jump
+
+There are blocks now. Looks like if I jump into them, I might get something. If I jump on top, it acts as a platform.
+
+It introduces a pattern by establishing if you touch the mushroom, you grow.
+Noted-- there are power-ups that make me stronger
+
+You experiment with two elements: Getting a mushroom, and then touching the enemy. Turns out that's a mistake and now you shrink back down. Noted-- can't kill bad guys by only being big.
+
+You experiment with two more elements: jump on the enemy's heads!. Noted-- bad guys can be jumped on.
+
+Now we're at a pit. Probably not safe to go in there, but maybe the screen will move down and reveal a new area. Let's try. Noted-- can't go down pits.
+
+These are universal patterns now in games. We know instinctively that we just don't touch enemies, and we should jump over pits.
+
+[video of jumping over pits]
+
+## Patterns are Fun
+
+Earlier we talked about nostalgia. Remember, nostalgia is fondly
+**remembering** the past. It's remembering a pattern that may be long gone from
+our current life.
+
+Like nostalgia, video games also has some psychological benefits. "Theory of
+Fun" includes [a study from 2011 released by East Carolina
+University](https://news.ecu.edu/2011/02/16/study-casual-video-games-demonstrate-ability-to-reduce-depression-and-anxiety/),
+that found that casual gamers who played in 30 minute periods showed an 87%
+improvement in cognitive response time, reduced depression symptoms by 57%, and
+215% increase in executive functioning. That's incredible!
+
+I'm starting to get the idea that nostalgia and video games are good news for
+our brains and well-being. This isn't limited to video games either; although I'm focusing on them; these taught patterns also exist in music and movies.
+
+Thinking about pop music, almost every song on the radio has a recognizable
+pattern, whether you've picked it out or not:
+
+- Intro
+- Verse 1
+- Chorus
+- Verse 2
+- Chorus
+- Bridge
+- Chorus
+- Outro
+
+If we analyzed the notes themselves, there are patterns of notes that musicians
+know sound good together called scales. Notes played that are not on the given
+scale will create a harsh sound creating dissonance; an out-of-tune guitar, for
+example.
+
+Likewise, movies and books typically follow a pattern:
+
+- Introduce characters and setting
+- Rising action or inciting incident.
+- Climax and Falling
+- Denouement (lessons learned)
+
+Consider Tic-Tac-Toe; it's definitely a game, but the pattern is easily
+perceived and there is no continuing variation. Mastery of Tie-Tac-Toe is
+quick. Alas, there is a point where patterns become boring and no longer fun.
+
+> Delight tends to wear thin very quickly. Real fun comes from challenges that
+> are always at the margin of our ability. When the balance is really perfect,
+> people often zone out.
+
+## Micro-lifecycles
+
+[Tron "The Grid"]
+
+We're explored nostalgia and patterns in popular media such as video games,
+movies, and music. What does this have to do with software development?
+
+Generally, Software development consists of applying code patterns to problems.
+Software developers, or really any artisans of their craft, notice and remember
+patterns. They remember which patterns work well and which don't; what problems
+those solution-patterns are good fits for and terrible fits for. Software
+developers are players in the game of software.
+
+[Tron "I got in"]
+
+People are amazing pattern-matchers. They look for patterns in everything;
+sometimes even finding patterns where there wasn't supposed to be, like a cloud
+formation. In software, patterns that emerge are often collected into groups.
+At a macro-level, these patterns are called architectures, such as MVC
+(Model-View-Controller) common in backend frameworks, or MVVM
+(Model-View-ViewModel) common in frontend frameworks, or REST (Representational
+state transfer) common in web communication.
+
+At a micro-level, it looks like, well... a game. This micro-lifecycle is how every game works.
+
+```
++----------------------------------------------------------+
+|                                                          |
+|              All forms of feedback:                      |
+|     Art, animation, sound, music, movement, story.       |
+|                                                          |
++-------+-------------------------------------------^------+
+        |                                           |
+        |                 A GAME ATOM               |
+        | updates                                   |
+        |                                      +----+-----------+
+        |                                      |                |
+   +----v--------+    +---------------+        |  🔁  place     |
+   |             |    |               | input  |                |
+   |   problem   +---->  preparation  +------->+ +------------+ |
+   |             |    |               |        | |    core    | |
+   +-------------+    +---------------+        | |  mechanic  | |
+                                               | +------------+ |
+                                               |                |
+                                               +----------------+
+```
+
+Let's change some of these words around and apply it to software development.
+
+```
++----------------------------------------------------------+
+|                                                          |
+|              All forms of feedback:                      |
+|      code review, performance, test suite, correctness,  |
+|               those dang customers                       |
++-------+-------------------------------------------^------+
+        |                                           |
+        |                 A SOFTWARE UNIT           |
+        | updates                                   |
+        |                                      +----+-----------+
+        |                                      |                |
+   +----v--------+    +---------------+        |  🔁  test      |
+   |             |    |               | spike  |                |
+   |   problem   +---->  preparation  +------->+ +------------+ |
+   |             |    |               |        | |   logic    | |
+   +-------------+    +---------------+        | |            | |
+                                               | +------------+ |
+                                               |                |
+                                               +----------------+
+```
+
+This looks like test-driven development.
+
+- We're presented a problem
+- We prepare for a solution
+- Write a test (place)
+- Run the logic (core mechanic)
+- And adjust according to the feedback we experience.
+
+Software developers and gamers experience the same micro-lifecycles! But let's
+call it what it is: it's a pattern at the micro level.
+
+Software development revolves around languages, architectures, and frameworks.
+These are all codified patterns with dissertations, whitepapers, systems, and
+books written about them. Coders leverage these patterns to solve their
+problems faster.
+
+Ruby on Rails is considered a really productive and fast framework for the Ruby
+language. It introduced the MVC architecture to a lot of young developers. Many
+developers of folks find Rails enjoyable; you have to follow the patterns that
+they set out to keep progress smooth. PHP Laravel is similar. There are dozens
+of frameworks that are aimed to be productive.
+
+Let's talk about JavaScript.
+
+[image of blurry islands]
+
+Back in the early 2000s, the web looked entirely different. JavaScript, believe
+it or not, wasn't as widely used as it is today. It was a mess; different
+browsers implemented different features, and sometimes the same feature but with
+different interfaces to it. There weren't many patterns. It wasn't as popular
+because it wasn't as enjoyable to work within. Think of it as the wild wild
+west; only those willing to leave the comforts of what they knew and explore the
+unknown would be able to move the language and its ecosystem forward and help
+define it.
+
+2006 came around and John Resig created jQuery, a small library that codified
+how to do basic things in JavaScript. It standardized, unofficially, how to
+access elements on the page, how to handle events, how to animate. It was an
+amazing contribution to the JavaScript community. It's still used today! jQuery
+inspired browser makers and some of those behaviors were codified into the
+language properly, and some of those apis are integrated into the browsers now
+and work natively without the library.
+
+Several years later in 2010, Google released a framework called Angular (known
+as AngularJS now). This was a full framework that applied the MVC and MVVM
+architecture to JavaScript.
+
+Years later in 2013, another library called React was released. Together with
+other libraries like React Router, Redux and more, it essentially formed a new
+framework.
+
+Shortly after in 2014, Vue was released, picking up some loved patterns from
+both Angular and React.
+
+The patterns that these libraries and frameworks introduced helped make frontend
+development much more enjoyable. JavaScript today is one of most prolific
+languages out there, no doubt in part because patterns emerged.
+
+These patterns will determine how much fun we're going to have programming.
+
+## Elixir
+
+Let's talk about a software language called Elixir.
+
+Elixir is beloved by developers, [particularly seasoned
+developers](https://elixirsurvey.typeform.com/report/yYmJv1/OcCCilUmDn8lBpgP),
+and I want to explore why. In fact, Elixir is the entire motivation for me to
+produce this video.
+
+[Twitter images of liking Elixir]
+
+What makes Elixir so enjoyable? Let's check out some common Elixir programming patterns. These patterns can be found in many other languages, but I sense a concentration of patterns in Elixir.
+
+## Pipelines
+
+Data is transformed.
+
+## Totality (Typespecs)
+
+With pattern-matching help define totality of a function. What I mean by "totality"
+
+## Monads (Maybe, Tuple Metadata, Accumulators)
+
+Ok, before I lose you, we're not going to explore what monads are; it doesn't
+matter. But, their effect is powerful and I want to explore a pattern that they
+enable. If you don't know what a monad is, that's totally fine. The simplest
+definition: A monad is a unit of data and metadata about the data.
+
+Not to say that Elixir has complete support for academic and mathematical
+monads like Haskell, but the Elixir community's code style leans towards using
+monads, perhaps without even knowing it.
+
+The best and smallest example I can think of for monads is the Maybe Monad:
+
+```elixir
+case my_function() do
+  {:ok, success_data} -> happy_path()
+  {:error, data_about_error} -> unhappy_path()
+end
+```
+
+In Elixir, we're pattern-matching on the result of `my_function()`, and that
+function result should return a maybe monad. The monad in this case is a 2-item
+tuple. The tuple begins with either `:ok` or `:error` which is metadata about
+the accompanied data.
+
+This is a pervasive pattern in Elixir. I bet that 100% of Elixir codebases out
+there have this pattern in it. It's extremely effective in how to route the
+data in the pipeline.
+
+Here's another one:
+
+```elixir
+@spec purchase(map()) :: {:ok, Purchase.t()} | {:error, PurchaseError.t()}
+def purchase(params) do
+  with {:ok, user} <- authenticate_user(params),
+       {:ok, order} <- prepare_order(user, params),
+       {:ok, purchase} <- purchase(order, user) do
+    {:ok, purchase}
+  else
+    {:error, error} ->
+      error = inspect(error)
+      Logger.error(error)
+
+      {:error, %PurchaseError{message: error}}
+  end
+end
+```
+
+Here, we are chaining several maybe monads together to form a pipeline. Inside
+the `with` statement:
+
+- it will authenticate the user; if that is successful,
+- then prepare the order, and if that is also successful,
+- then make the purchase.
+
+If anything goes wrong in that process it will bail, log the error, and return
+the error tuple. The maybe monad is extremely effective.
+
+## Happy-path
+
+Above
+
+## Composition (Functions in the small and large)
+
+Here's the clencher, all the patterns we see above are repeated everywhere, with
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 footer: @bernheisel --- WHY ELIXIR?
 theme: Titillium (Better Code)
 slidenumbers: true
