@@ -54,7 +54,7 @@ Our autobiographical memory -- that is, our psychological history of ourselves
 that is considered too recent. For the life of me, I can't remember what being
 6 was like; I remember snippets like riding my bike around the neighborhood in
 odd moments of self-reflection. Likewise, I couldn't tell you what I did
-2 years ago that affected my life profoundly. It's unconsciencely regarded as
+2 years ago that affected my life profoundly. It's unconsciously regarded as
 too recent to be formative of "who I am."
 
 Our young adulthood is where we develop our self-identity; it's when we
@@ -329,28 +329,121 @@ These patterns will determine how much fun we're going to have programming.
 
 Let's talk about a software language called Elixir.
 
+[Elixir](https://elixir-lang.org/) is a relatively new functional language that
+compiles to Erlang, which is a 30+ year old language built for concurrent and
+distributed systems. I find it incredibly powerful for the web, which is also highly concurrent and distributed.
+
+> Elixir is a dynamic, functional language designed for building scalable and
+> maintainable applications.
+
+> Elixir leverages the Erlang VM, known for running low-latency, distributed
+> and fault-tolerant systems, while also being successfully used in web
+> development, embedded software, data ingestion, and multimedia processing
+> domains.
+
 Elixir is beloved by developers, [particularly seasoned
 developers](https://elixirsurvey.typeform.com/report/yYmJv1/OcCCilUmDn8lBpgP),
 and I want to explore why. In fact, Elixir is the entire motivation for me to
-produce this video.
+produce this content.
 
 [Twitter images of liking Elixir]
 
-What makes Elixir so enjoyable? Let's check out some common Elixir programming patterns. These patterns can be found in many other languages, but I sense a concentration of patterns in Elixir.
+> The Vault team [at Heroku] doing Elixir is only three engineers. Most of
+> their apps are used internally, so they are generally not worried about
+> performance. They continue using Elixir because they **feel productive and
+> happy with it**. They have also found it is an easier language to maintain
+> compared to their previous experiences.
+>
+> - ["PaaS with Elixir at Heroku"](https://elixir-lang.org/blog/2020/09/24/paas-with-elixir-at-Heroku/)
+
+What makes Elixir so enjoyable? Let's check out some common Elixir programming patterns. These patterns can be found in many other languages, but I find a concentration of patterns in Elixir. Maybe this is why it's enjoyable and as they say, maintainable.
 
 ## Pipelines
 
-Data is transformed.
+When we think about what an application accomplishes, we often frame it in our
+minds as a ruleset and transformation of data. That's where we start, at least.
 
-## Totality (Typespecs)
+[Railway]
 
-With pattern-matching help define totality of a function. What I mean by "totality"
+- Data comes in
+- Data is transformed
+- Data goes out
+
+In Elixir, you can accomplish this with the pipeline operator:
+
+```elixir
+"My   String"
+|> String.trim()
+|> String.replace("My", "Your")
+|> String.upcase()
+#=> "YOUR STRING"
+```
+
+The pipeline starts with a string `"My  String"` and passes it into the first
+position of the next function `String.trim/1`. The result of that function is
+then passed into the first position of the next function `String.replace(...,
+"My", "Your")` and so on until the end when we have the result `"YOUR STRING"`.
+
+It doesn't have to be all about transformation either. If at any point, we
+wanted to see what the data was between any of those functions, we could also
+throw in an `IO.inspect()` between the functions.
+
+```elixir
+"My   String"
+|> String.trim()
+|> IO.inspect(label: "the string is")
+|> String.replace("My", "Your")
+|> String.upcase()
+
+#=> the string is: "My String"
+#=> "YOUR STRING"
+```
+
+Move the `IO.inspect` down a little bit...
+
+```elixir
+"My   String"
+|> String.trim()
+|> String.replace("My", "Your")
+|> IO.inspect(label: "the string is")
+|> String.upcase()
+
+#=> the string is: "Your String"
+#=> "YOUR STRING"
+```
+
+It's a simple and effective way to see the state of your string as it's passed
+through the pipeline.
+
+The pipeline pattern is everywhere in Elixir, and it makes it clear how the
+data is being operated upon. We can see instantly that it's being trimmed,
+we're replacing a word, and upcasing the string. There's no need to name
+interstitial stages of the string while it's being operated upon. Opposed to
+this:
+
+```elixir
+trimmed_string = String.trim("My String")
+replaced_string = String.replace(trimmed_string, "My", "Your")
+upcased_string = String.upcase(replaced_string)
+```
+
+This is a simple example, but your eyes have to scan to the right to see the
+beginning of the data transformation, and then search for where that variable
+goes in the next function.
+
+Pipelines are everywhere with Elixir.
+
+The pipeline operator `|>` is not in every language, nor does it need to be in
+order to write your code towards inputs/outputs. But because the operator
+exists, it allows and steers developers to work in such a pattern.
+
+Another form of a data pipeline is using the `with` macro. You may have noticed in our simple example about that a String is passed in and out of all the functions; there wasn't a great way to check the output if it was successful; `with` helps with that. Let's look at that in our next pattern:
 
 ## Monads (Maybe, Tuple Metadata, Accumulators)
 
 Ok, before I lose you, we're not going to explore what monads are; it doesn't
 matter. But, their effect is powerful and I want to explore a pattern that they
-enable. If you don't know what a monad is, that's totally fine. The simplest
+enable. If you don't know what a monad is, that's totally fine. Here's a simple
 definition: A monad is a unit of data and metadata about the data.
 
 Not to say that Elixir has complete support for academic and mathematical
@@ -360,16 +453,19 @@ monads, perhaps without even knowing it.
 The best and smallest example I can think of for monads is the Maybe Monad:
 
 ```elixir
-case my_function() do
-  {:ok, success_data} -> happy_path()
-  {:error, data_about_error} -> unhappy_path()
+case this_might_work() do
+  {:ok, success_data} ->
+    happy_path(success_data)
+
+  {:error, data_about_error} ->
+    unhappy_path(data_about_error)
 end
 ```
 
-In Elixir, we're pattern-matching on the result of `my_function()`, and that
-function result should return a maybe monad. The monad in this case is a 2-item
-tuple. The tuple begins with either `:ok` or `:error` which is metadata about
-the accompanied data.
+In Elixir, we're pattern-matching on the result of `this_might_work()`, and
+that function returns a maybe monad. The monad in this case is a 2-item tuple.
+The tuple begins with either `:ok` or `:error` which is metadata about the
+accompanied data.
 
 This is a pervasive pattern in Elixir. I bet that 100% of Elixir codebases out
 there have this pattern in it. It's extremely effective in how to route the
@@ -378,35 +474,85 @@ data in the pipeline.
 Here's another one:
 
 ```elixir
-@spec purchase(map()) :: {:ok, Purchase.t()} | {:error, PurchaseError.t()}
-def purchase(params) do
-  with {:ok, user} <- authenticate_user(params),
-       {:ok, order} <- prepare_order(user, params),
-       {:ok, purchase} <- purchase(order, user) do
-    {:ok, purchase}
-  else
-    {:error, error} ->
-      error = inspect(error)
-      Logger.error(error)
+with {:ok, burger} <- McDonalds.order("burger"),
+     {:ok, fries} <- McDonalds.order("fries"),
+     {:ok, milkshake} <- McDonalds.order("milkshake") do
+  {:ok, [burger, fries, milkshake]}
+else
+  {:error, error_message} ->
+    Emotions.frustrate()
+    Memory.remember(error_message)
+    {:error, "did not complete order"}
+end
+```
 
-      {:error, %PurchaseError{message: error}}
+Look! We're combining two patterns now: the pipeline, and maybe monads. Here,
+we are chaining several maybe monads together to form a pipeline with the help
+of the `with` macro. Inside the `with` statement:
+
+- order a burger. If you get a burger, then continue
+- order some fries. If you get fries, then continue
+- order a milkshake. If you get a milkshake, then you're done! Grab your food
+  and go!
+
+If they don't have one of the above items, then the pipeline will stop and
+return the first encountered error.
+
+The maybe monad is extremely effective.
+
+## Happy-path
+
+The previous example includes another pattern: seeing the happy path. I want to
+show you a couple of implementations of a process; one in Ruby and another in
+Elixir.
+
+```ruby
+def order(params)
+  user = User.find(params["user_id"])       #| Happy path
+  return unless user                        #| Unhappy path
+
+  item = Warehouse.find(params)             #| Happy path
+  return unless item                        #| Unhappy path
+
+  money = Billing.charge_user(user, item)   #| Happy path
+  return unless money                       #| Unhappy path
+
+  schedule_delivery(user, item)
+end
+```
+
+In this implementation, I can see that need a user, in-stock item, and money
+charged before we schedule a delivery, but visually, I see there a mixture of
+unhappy and happy paths. It's a little difficult to visually pick out quickly
+what the desired outcomes are supposed to be. Again, this is a simple example;
+real-world code is harder than this in many cases.
+
+Let's try this in Elixir using the patterns we've identified earlier:
+
+```elixir
+def order(params) do
+  with {:ok, user} <- User.find(params),               #|\
+       {:ok, item} <- Warehouse.find(params),          #| \ Happy Path
+       {:ok, _money} <- Billing.charge(user, item) do  #| /
+    schedule_delivery(user, item)                      #|/
+  else                                                 #|\
+    {:error, _} -> nil                                 #|_\ Unhappy Path
   end
 end
 ```
 
-Here, we are chaining several maybe monads together to form a pipeline. Inside
-the `with` statement:
+Here I can see that the happy path is consolidated into one area. I know
+exactly what is expected for the process to complete successfully. I also know
+where the error cases are handled.
 
-- it will authenticate the user; if that is successful,
-- then prepare the order, and if that is also successful,
-- then make the purchase.
+This code focuses on the solution first, which is important because for many
+many developers, the first goal is to make it work, then make it fast, then
+make it beautiful. With the solution consolidated at the top of the function,
+I know I made it work and can handle error cases at a later time.
 
-If anything goes wrong in that process it will bail, log the error, and return
-the error tuple. The maybe monad is extremely effective.
+## Totality (Typespecs)
 
-## Happy-path
-
-Above
+With pattern-matching help define totality of a function. What I mean by "totality"
 
 ## Composition (Functions in the small and large)
 
@@ -416,6 +562,10 @@ Here's the clencher, all the patterns we see above are repeated everywhere, with
 
 
 
+
+## Understood
+
+These patterns
 
 
 
