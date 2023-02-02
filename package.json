@@ -11,6 +11,6 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "reveal-md": "^2.0.4"
+    "reveal-md": "^5.4.0"
   }
 }
